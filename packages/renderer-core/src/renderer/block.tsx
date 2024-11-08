@@ -12,6 +12,7 @@ export default function blockRendererFactory(): IBaseRenderComponent {
       this.__generateCtx({});
       const schema = props.__schema || {};
       this.state = this.__parseData(schema.state || {});
+      this.__parseSourceData({});
       this.__initDataSource(props);
       this.__executeLifeCycleMethod('constructor', [...arguments]);
     }

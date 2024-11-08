@@ -302,6 +302,11 @@ export default function baseRendererFactory(): IBaseRenderComponent {
       return parseData(data, ctx || __ctx || this, { thisRequiredInJSE, logScope: componentName });
     };
 
+    __parseSourceData = () => {
+      // @TODO
+      console.log('parse sourceData');
+    };
+
     __initDataSource = (props: IBaseRendererProps) => {
       if (!props) {
         return;

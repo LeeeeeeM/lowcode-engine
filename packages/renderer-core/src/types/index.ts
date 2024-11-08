@@ -291,6 +291,7 @@ export type IBaseRendererInstance = IGeneralComponent<
     __bindCustomMethods(props: IBaseRendererProps): void;
     __generateCtx(ctx: Record<string, any>): void;
     __parseData(data: any, ctx?: any): any;
+    __parseSourceData(data: any, ctx?: any): any;
     __initDataSource(props: IBaseRendererProps): void;
     __render(): void;
     __getRef(ref: any): void;
