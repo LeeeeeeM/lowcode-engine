@@ -4,6 +4,21 @@ import { RequestHandler, IPublicTypeNodeSchema, IPublicTypeRootSchema, IPublicTy
 
 export type ISchema = IPublicTypeNodeSchema | IPublicTypeRootSchema;
 
+export enum SchemaIdentityType {
+  FETCH = 'fetch',
+  JSONP = 'jsonp',
+  VARIABLE = 'variable'
+}
+
+export interface VariableStruct {
+  code: {
+    value: string;
+  };
+  desc: string;
+  type: SchemaIdentityType.VARIABLE;
+  id: string;
+}
+
 /*
  ** Duck typed component type supporting both react and rax
  */

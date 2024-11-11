@@ -59,9 +59,6 @@
     "yarn": "^1.22.17",
     "cheerio": "^0.22.0"
   },
-  "resolution": {
-    "cheerio": "^0.22.0"
-  },
   "engines": {
     "node": ">=14.17.0 <18"
   },
@@ -71,7 +68,8 @@
   },
   "resolutions": {
     "typescript": "4.6.2",
-    "react-error-overlay": "6.0.9"
+    "react-error-overlay": "6.0.9",
+    "cheerio": "^0.22.0"
   },
   "repository": "git@github.com:alibaba/lowcode-engine.git"
 }

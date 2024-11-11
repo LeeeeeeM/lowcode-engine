@@ -28,7 +28,7 @@ import {
   isVariable,
   isJSSlot,
 } from '../utils';
-import { IBaseRendererProps, INodeInfo, IBaseRenderComponent, IBaseRendererContext, IRendererAppHelper, DataSource } from '../types';
+import { IBaseRendererProps, INodeInfo, IBaseRenderComponent, IBaseRendererContext, IRendererAppHelper, DataSource, SchemaIdentityType, VariableStruct } from '../types';
 import { compWrapper } from '../hoc';
 import { IComponentConstruct, leafWrapper } from '../hoc/leaf';
 import logger from '../utils/logger';
@@ -302,9 +302,28 @@ export default function baseRendererFactory(): IBaseRenderComponent {
       return parseData(data, ctx || __ctx || this, { thisRequiredInJSE, logScope: componentName });
     };
 
-    __parseSourceData = () => {
-      // @TODO
-      console.log('parse sourceData');
+    __parseSourceData = (props: IBaseRendererProps) => {
+      console.warn('is running parseSourceData');
+      if (!props) {
+        return;
+      }
+      const schema = props.__schema || {};
+      const originDatasource = schema.dataSource?.list || [];
+
+      const filteredDatasource = originDatasource.filter(
+        (item) => item.type &&
+          [SchemaIdentityType.VARIABLE].includes(
+            item.type as SchemaIdentityType,
+          ),
+      ) as unknown as VariableStruct[];
+
+      const res: Record<string, any> = {};
+      filteredDatasource.forEach((item: VariableStruct) => {
+        // eslint-disable-next-line no-new-func
+        const result = new Function(`return ${item.code.value};`)();
+        res[item.id] = result;
+      });
+      return res;
     };
 
     __initDataSource = (props: IBaseRendererProps) => {
@@ -315,7 +334,21 @@ export default function baseRendererFactory(): IBaseRenderComponent {
       const defaultDataSource: DataSource = {
         list: [],
       };
-      const dataSource = schema.dataSource || defaultDataSource;
+      // SchemaIdentityType
+      const originDatasource = schema.dataSource?.list || [];
+
+      const filteredDatasource = originDatasource.filter(
+        (item) => item.type &&
+          [SchemaIdentityType.FETCH, SchemaIdentityType.JSONP].includes(
+            item.type as SchemaIdentityType,
+          ),
+      );
+
+      const dataSource: DataSource = {
+        ...(schema?.dataSource || {}),
+        list: filteredDatasource || defaultDataSource.list,
+      };
+
       // requestHandlersMap 存在才走数据源引擎方案
       // TODO: 下面if else 抽成独立函数
       const useDataSourceEngine = !!(props.__appHelper?.requestHandlersMap);

@@ -31,8 +31,12 @@ export default function addonRendererFactory(): IBaseRenderComponent {
         component: this,
       });
       const schema = props.__schema || {};
-      this.state = this.__parseData(schema.state || {});
-      this.__parseSourceData({});
+      const ds = this.__parseSourceData(props);
+      const currentData = this.__parseData(schema.state || {});
+      this.state = {
+        ...ds,
+        ...currentData,
+      };
       if (isEmpty(props.config) || !props.config?.addonKey) {
         logger.warn('lce addon has wrong config');
         this.setState({
