@@ -183,4 +183,8 @@ Special thanks to everyone who contributed to this project.
 
 # npx lerna link --force-local
 
+## 本地如果没有引入成功，请查看 package.json 里的 module引入是否匹配
+## @evilemon/lowcode-renderer-core 这个库有两处使用，第一是编辑器内部的引入，第二是预览 renderer 内引入，替换。
+
 # yarn run build
+
