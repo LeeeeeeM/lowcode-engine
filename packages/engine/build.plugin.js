@@ -13,7 +13,8 @@ function getVersion() {
   const match = reBranchVersion.exec(gitBranchName);
   if (!match) {
     console.warn(`[engine] gitBranchName: ${gitBranchName}`);
-    return 'N/A';
+    const localVersion = require('./package.json').version;
+    return `${localVersion}-dev`;
   }
 
   const [_, version, beta] = match;
