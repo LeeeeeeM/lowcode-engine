@@ -2,7 +2,7 @@
 /* eslint-disable max-len */
 /* eslint-disable react/prop-types */
 import classnames from 'classnames';
-import { create as createDataSourceEngine } from '@alilc/lowcode-datasource-engine/interpret';
+import { create as createDataSourceEngine } from '@evilemon/lowcode-datasource-engine/interpret';
 import { IPublicTypeNodeSchema, IPublicTypeNodeData, IPublicTypeJSONValue, IPublicTypeCompositeValue } from '@alilc/lowcode-types';
 import { checkPropTypes, isI18nData, isJSExpression, isJSFunction } from '@alilc/lowcode-utils';
 import adapter from '../adapter';

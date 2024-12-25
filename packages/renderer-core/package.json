@@ -1,6 +1,6 @@
 {
   "name": "@evilemon/lowcode-renderer-core",
-  "version": "1.3.2-beta.1",
+  "version": "1.3.2-beta.2",
   "description": "renderer core",
   "license": "MIT",
   "main": "lib/index.js",
@@ -15,7 +15,7 @@
     "test:cov": "build-scripts test --config build.test.json --jest-coverage"
   },
   "dependencies": {
-    "@alilc/lowcode-datasource-engine": "^1.0.0",
+    "@evilemon/lowcode-datasource-engine": "^1.0.0",
     "@alilc/lowcode-types": "1.3.2",
     "@alilc/lowcode-utils": "1.3.2",
     "classnames": "^2.2.6",
