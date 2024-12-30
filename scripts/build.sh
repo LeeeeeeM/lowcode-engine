@@ -14,7 +14,7 @@ lerna run build \
   --scope @alilc/lowcode-plugin-outline-pane \
   --scope @alilc/lowcode-react-renderer \
   --scope @alilc/lowcode-react-simulator-renderer \
-  --scope @alilc/lowcode-renderer-core \
+  --scope @evilemon/lowcode-renderer-core \
   --scope @alilc/lowcode-workspace \
   --scope @alilc/lowcode-engine \
   --stream

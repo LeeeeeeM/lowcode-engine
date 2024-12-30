@@ -241,7 +241,7 @@ export const builtinHotkey = (ctx: IPublicModelPluginContext) => {
         e.preventDefault();
 
         const sel = doc.selection;
-        const topItems = sel.getTopNodes();
+        const topItems = sel.getTopNodes() || [];
         // TODO: check can remove
         topItems.forEach((node) => {
           if (node?.canPerformAction('remove')) {
